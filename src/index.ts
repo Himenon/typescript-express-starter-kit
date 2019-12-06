@@ -6,7 +6,7 @@ const createServer = (): express.Application => {
   const app = express();
 
   app.get("*", (req: express.Request, res: express.Response) => {
-    res.json({ query: req.query });
+    res.json({ query: (req as any).query });
     res.end();
   });
 

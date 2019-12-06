@@ -1,15 +1,7 @@
 {
-  "extends": [
-    "tslint:recommended",
-    "tslint:latest",
-    "tslint-plugin-prettier",
-    "tslint-config-prettier"
-  ],
+  "extends": ["tslint:recommended", "tslint:latest", "tslint-plugin-prettier", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": [
-      "config/**/*.js",
-      "node_modules/**/*.ts"
-    ]
+    "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
   },
   "rules": {
     "no-string-throw": true,
@@ -33,19 +25,20 @@
     "no-submodule-imports": false,
     "object-literal-sort-keys": [false, "match-declaration-order"],
     "trailing-comma": false,
-    "rulesDirectory": [
-      "tslint-plugin-prettier"
-    ],
-    "prettier": [true, {
-      "useTabs": false,
-      "printWidth": 140,
-      "tabWidth": 2,
-      "singleQuote": false,
-      "trailingComma": "all",
-      "jsxBracketSameLine": false,
-      "parser": "typescript",
-      "bracketSpacing": true,
-      "semi": true
-    }]
+    "rulesDirectory": ["tslint-plugin-prettier"],
+    "prettier": [
+      true,
+      {
+        "useTabs": false,
+        "printWidth": 140,
+        "tabWidth": 2,
+        "singleQuote": false,
+        "trailingComma": "all",
+        "jsxBracketSameLine": false,
+        "parser": "typescript",
+        "bracketSpacing": true,
+        "semi": true
+      }
+    ]
   }
 }
