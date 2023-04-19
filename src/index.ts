@@ -1,9 +1,15 @@
+import cors from "cors";
 import express from "express";
+
+import * as Model from "./model";
 
 const SERVER_PORT = 9000;
 
+Model.createTable("hello");
+
 const createServer = (): express.Application => {
   const app = express();
+  app.use(cors());
 
   app.get("*", (req: express.Request, res: express.Response) => {
     res.json({ query: req.query });
