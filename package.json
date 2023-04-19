@@ -1,14 +1,13 @@
 {
   "name": "express-server",
   "version": "0.0.1",
+  "private": true,
   "description": "express starter kit",
   "keywords": [],
   "homepage": "https://github.com/Himenon/express-server#readme",
-  "private": true,
   "bugs": {
     "url": "https://github.com/Himenon/express-server/issues"
   },
-  "type": "module",
   "repository": "Himenon/express-server",
   "license": "MIT",
   "author": {
@@ -16,15 +15,16 @@
     "email": "k.himeno314@gmail.com",
     "url": "https://github.com/Himenon"
   },
-  "files": [
-    "lib",
-    "package.json"
-  ],
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
+  "files": [
+    "lib",
+    "package.json"
+  ],
   "scripts": {
     "clean": "del dist lib",
     "develop": "pnpm run ts:esm ./src/entry.ts",
