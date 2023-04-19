@@ -1,35 +1,20 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
-    "module": "commonjs",
-    "target": "esnext",
-    "lib": ["dom", "esnext"],
-    "experimentalDecorators": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "allowJs": false,
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "baseUrl": "./",
-    "noLib": false,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "jsx": "react"
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["./node_modules"],
-  "ordered-imports": [
-    true,
-    {
-      "import-sources-order": "any",
-      "named-imports-order": "case-insensitive"
-    }
-  ]
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "target": "ES2022",
+    "lib": ["dom", "es2022"],
+    "rootDir": ".",
+    "outDir": "lib",
+    "strict": true
+  }
 }
