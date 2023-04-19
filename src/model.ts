@@ -1,6 +1,6 @@
 import Database from "better-sqlite3";
 
-const db = new Database(":memory:");
+const db = new Database("db.sqlite3");
 
 export const createTable = (tableName: string) => {
   db.exec(`create table if not exists ${tableName} ( json JSON NOT NULL );`);
