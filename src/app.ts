@@ -17,12 +17,6 @@ const createServer = (): express.Application => {
 
 const server = createServer();
 
-if (import.meta.env.PROD) {
-  server.listen(SERVER_PORT, () => {
-    console.log(`Serve start: http://localhost:${SERVER_PORT}`);
-  });
-} else {
-  console.info(`[INFO] Run Debug Server`);
-}
-
-export const viteNodeApp = server;
+server.listen(SERVER_PORT, () => {
+  console.log(`Serve start: http://localhost:${SERVER_PORT}`);
+});
