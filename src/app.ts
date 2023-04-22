@@ -1,11 +1,7 @@
 import cors from "cors";
 import express from "express";
 
-import * as Model from "./model";
-
-const SERVER_PORT = 9000;
-
-Model.createTable("hello");
+const SERVER_PORT = Number(process.env.PORT ?? 3000);
 
 const createServer = (): express.Application => {
   const app = express();
@@ -20,6 +16,13 @@ const createServer = (): express.Application => {
 };
 
 const server = createServer();
-server.listen(SERVER_PORT, () => {
-  console.log(`Serve start: http://localhost:${SERVER_PORT}`);
-});
+
+if (import.meta.env.PROD) {
+  server.listen(SERVER_PORT, () => {
+    console.log(`Serve start: http://localhost:${SERVER_PORT}`);
+  });
+} else {
+  console.info(`[INFO] Run Debug Server`);
+}
+
+export const viteNodeApp = server;
