@@ -3,8 +3,6 @@ import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import swc from "rollup-plugin-swc";
 
-const isProduction = process.env.NODE_ENV === "production";
-
 /**
  * @type {import("rollup").RollupOptions}
  */
@@ -20,6 +18,7 @@ export default {
     resolve({
       extensions: [".ts", ".js", ".json"],
       modules: ["src", "node_modules"],
+      preferBuiltins: true,
     }),
     commonjs(),
     json(),
@@ -27,13 +26,8 @@ export default {
       jsc: {
         parser: {
           syntax: "typescript",
-          tsx: true,
-          dynamicImport: true,
-        },
-        transform: {
-          react: {
-            runtime: "automatic",
-          },
+          tsx: false,
+          dynamicImport: false,
         },
       },
     }),
