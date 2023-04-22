@@ -1,0 +1,9 @@
+package.json
+pnpm-lock.yaml
+node_modules
+lib
+dist
+*.md
+*.d.ts
+packages/graphql/generated/
+storybook-static
