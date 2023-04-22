@@ -29,7 +29,7 @@
     "clean": "del dist lib",
     "build": "rollup -c",
     "develop": "pnpm run ts:esm ./src/entry.ts",
-    "start": "pnpm run dev",
+    "start": "nodemon",
     "test:ci": "run-s test:dependency",
     "test:dependency": "depcruise src -v",
     "ts:esm": "node --loader ts-node/esm --experimental-specifier-resolution=node",
@@ -59,7 +59,7 @@
   },
   "nodemonConfig": {
     "delay": 600,
-    "exec": "pnpm run ts:esm src/index.ts",
+    "exec": "pnpm run build && node ./dist/server.cjs",
     "ext": "ts,tsx",
     "ignore": [
       "dist/*",
