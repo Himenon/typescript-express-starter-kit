@@ -11,13 +11,15 @@ export default {
   output: {
     format: "cjs",
     file: "dist/server.cjs",
-    sourcemap: "inline",
+    generatedCode: {
+      constBindings: true,
+    },
   },
   external: ["fs", "path"],
   plugins: [
     resolve({
       extensions: [".ts", ".js", ".json"],
-      modules: ["src", "node_modules"],
+      moduleDirectories: ["src", "node_modules"],
       preferBuiltins: true,
     }),
     commonjs(),
