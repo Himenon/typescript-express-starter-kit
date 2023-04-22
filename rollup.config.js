@@ -15,7 +15,6 @@ export default {
       constBindings: true,
     },
   },
-  external: ["fs", "path"],
   plugins: [
     resolve({
       extensions: [".ts", ".js", ".json"],
