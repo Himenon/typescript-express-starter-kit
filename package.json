@@ -36,7 +36,7 @@
     "watch": "nodemon",
     "postinstall": "simple-git-hooks",
     "format": "run-s prettier:format eslint:format",
-    "prettier:format": "prettier \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md,html,gql}\" --cache --write ./packages",
+    "prettier:format": "prettier \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md,html,gql}\" --cache --write .",
     "prettier:validate": "prettier --check \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md,html}\"",
     "eslint:format": "eslint \"**/*.{ts,tsx}\" --fix --cache",
     "eslint:validate": "eslint \"**/*.{ts,tsx}\" --cache"
@@ -86,8 +86,6 @@
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "generate-changelog": "^1.8.0",
