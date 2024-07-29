@@ -1,0 +1,23 @@
+{
+  "id": "chatcmpl-9qFhneKqAzLbXv3hYtL6BUiga06iW",
+  "object": "chat.completion",
+  "created": 1722240455,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "こんにちは！どのようにお手伝いしましょうか？"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 8,
+    "completion_tokens": 20,
+    "total_tokens": 28
+  },
+  "system_fingerprint": null
+}

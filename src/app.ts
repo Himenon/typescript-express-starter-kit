@@ -1,6 +1,7 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
+import * as fs from "fs";
 import OpenAI from "openai";
 
 console.log("HEUY");
@@ -13,17 +14,14 @@ const app = express();
 
 app.disable("x-powered-by");
 app.use(compression());
-app.use(
-  // 4mb limit for image uploads.
-  express.json({
-    limit: "4mb",
-  }),
-);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors()); // only development
 
-app.post("/chat/create/reply", async (req, res) => {
-  console.log(req.body);
+app.post("/api/chat", async (req, res) => {
+  console.log(req.body.message);
+  const message: string = req.body.message;
   const chatCompletion = await client.chat.completions.create({
     messages: [
       {
@@ -31,7 +29,7 @@ app.post("/chat/create/reply", async (req, res) => {
         content: [
           {
             type: "text",
-            text: "Say this is a test",
+            text: message,
           },
         ],
       },
@@ -41,6 +39,11 @@ app.post("/chat/create/reply", async (req, res) => {
 
   console.log(chatCompletion);
 
+  fs.writeFileSync("debug.json", JSON.stringify(chatCompletion, null, 2), "utf-8");
+
+  res.send({
+    message: chatCompletion.choices.map((choice) => choice.message.content).join("\n"),
+  });
   res.end();
 });
 
