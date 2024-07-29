@@ -1,6 +1,6 @@
 import compression from "compression";
 import cors from "cors";
-import * as express from "express";
+import express from "express";
 import OpenAI from "openai";
 
 console.log("HEUY");
