@@ -1,23 +1,23 @@
 {
-  "id": "chatcmpl-9qFhneKqAzLbXv3hYtL6BUiga06iW",
+  "id": "chatcmpl-9qG6mvBX8KRLgvw8PH844yXB6fk7p",
   "object": "chat.completion",
-  "created": 1722240455,
+  "created": 1722242004,
   "model": "gpt-3.5-turbo-0125",
   "choices": [
     {
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "こんにちは！どのようにお手伝いしましょうか？"
+        "content": "あるコインを何度か投げる実験を行います。コインは表と裏があり、表が出る確率は1/2、裏が出る確率も1/2です。コインをN回投げたとき、表の出る回数を数えるプログラムを作成してください。"
       },
       "logprobs": null,
       "finish_reason": "stop"
     }
   ],
   "usage": {
-    "prompt_tokens": 8,
-    "completion_tokens": 20,
-    "total_tokens": 28
+    "prompt_tokens": 129,
+    "completion_tokens": 89,
+    "total_tokens": 218
   },
   "system_fingerprint": null
 }

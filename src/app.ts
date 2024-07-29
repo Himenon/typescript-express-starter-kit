@@ -1,7 +1,6 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
-import * as fs from "fs";
 import OpenAI from "openai";
 
 console.log("HEUY");
@@ -19,9 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors()); // only development
 
-app.post("/api/chat", async (req, res) => {
-  console.log(req.body.message);
-  const message: string = req.body.message;
+const getMessage = async (text: string): Promise<string> => {
   const chatCompletion = await client.chat.completions.create({
     messages: [
       {
@@ -29,7 +26,7 @@ app.post("/api/chat", async (req, res) => {
         content: [
           {
             type: "text",
-            text: message,
+            text: text,
           },
         ],
       },
@@ -37,12 +34,35 @@ app.post("/api/chat", async (req, res) => {
     model: "gpt-3.5-turbo",
   });
 
-  console.log(chatCompletion);
+  return chatCompletion.choices.map((choice) => choice.message.content).join("\n");
+};
 
-  fs.writeFileSync("debug.json", JSON.stringify(chatCompletion, null, 2), "utf-8");
+app.post("/api/chat", async (req, res) => {
+  const keyword: string = req.body.message;
+
+  const questionTitle = await getMessage(["次のキーワードを元にアルゴリズムの問題タイトルをを考えてください", keyword].join("\n"));
+  const questionBody = await getMessage(
+    [
+      "次の問題タイトルを元にアルゴリズムの問題本文を提案してください。",
+      "ただし、この問題はテスト可能な問題としてください。",
+      questionTitle,
+    ].join("\n"),
+  );
+
+  const [questionBodyEn, answerJs, answerRuby, testCase] = await Promise.all([
+    getMessage(["次の文章を英語に翻訳してください", questionBody].join("\n")),
+    getMessage(["次の問題を解いて、JavaScriptの解答コードを提案してください", questionBody].join("\n")),
+    getMessage(["次の問題を解いて、Rubyの解答コードを提案してください", questionBody].join("\n")),
+    getMessage(["次の問題をテストするテストケースを提案してください", questionBody].join("\n")),
+  ]);
 
   res.send({
-    message: chatCompletion.choices.map((choice) => choice.message.content).join("\n"),
+    questionTitle: questionTitle,
+    questionBody: questionBody,
+    questionBodyEn: questionBodyEn,
+    answerJS: answerJs,
+    answerRuby: answerRuby,
+    testCase: testCase,
   });
   res.end();
 });
