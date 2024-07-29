@@ -1,22 +1,49 @@
+import compression from "compression";
 import cors from "cors";
-import express from "express";
+import * as express from "express";
+import OpenAI from "openai";
 
-const SERVER_PORT = Number(process.env.PORT ?? 3000);
+console.log("HEUY");
 
-const createServer = (): express.Application => {
-  const app = express();
-  app.use(cors());
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
-  app.get("*", (req: express.Request, res: express.Response) => {
-    res.json({ query: req.query });
-    res.end();
+const app = express();
+
+app.disable("x-powered-by");
+app.use(compression());
+app.use(
+  // 4mb limit for image uploads.
+  express.json({
+    limit: "4mb",
+  }),
+);
+
+app.use(cors()); // only development
+
+app.post("/chat/create/reply", async (req, res) => {
+  console.log(req.body);
+  const chatCompletion = await client.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: "Say this is a test",
+          },
+        ],
+      },
+    ],
+    model: "gpt-3.5-turbo",
   });
 
-  return app;
-};
+  console.log(chatCompletion);
 
-const server = createServer();
+  res.end();
+});
 
-server.listen(SERVER_PORT, () => {
-  console.log(`Serve start: http://localhost:${SERVER_PORT}`);
+app.listen(10010, () => {
+  console.log(`Start: http://localhost:10010`);
 });
